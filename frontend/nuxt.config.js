@@ -110,7 +110,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost/Ecommerce/api/public/api'
+    baseURL: 'http://localhost/Ecommerce_code/api/public/api'
   },
   auth: {    
     strategies: {
