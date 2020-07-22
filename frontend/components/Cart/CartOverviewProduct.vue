@@ -24,7 +24,7 @@
       <span class="pa-1">{{ product.total }}</span>    
     </th>
     <th class="text-left">
-      <a href>
+      <a href @click.prevent="destroy(product.id)">
         <v-icon small>close</v-icon>
       </a>
     </th>
@@ -32,12 +32,18 @@
 
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   props: {
     product: {
       required: true,
       type: Object
-    }, 
+    } 
   },
-};
+    methods: {
+      ...mapActions({
+        destroy: 'cart/destroy'
+      })
+    },
+  }
 </script>
