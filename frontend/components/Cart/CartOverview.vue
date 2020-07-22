@@ -1,13 +1,13 @@
 <template>
-  <table class='grey lighten-4 w-100'>
-    <tbody>
-      <CartOverviewProduct 
-      v-for="product in products" 
-      :key="product.id" 
-      
-      />
-    </tbody>
-  </table>
+  <v-simple-table>   
+      <tbody>
+        <CartOverviewProduct
+         v-for="product in products" 
+         :key="product.id" 
+         :product="product"
+         />
+      </tbody>    
+  </v-simple-table>
 </template>
 <script>
 import CartOverviewProduct from "@/components/cart/CartOverviewProduct";
@@ -17,8 +17,9 @@ export default {
   components: { CartOverviewProduct },
   computed: {
     ...mapGetters({
-      products: "cart/products"
-    })
-  }
+      products: "cart/products",
+    }),
+  },
+  
 };
 </script>

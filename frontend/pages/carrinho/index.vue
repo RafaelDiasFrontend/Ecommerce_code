@@ -1,5 +1,4 @@
 <template>
-  <v-main>
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
@@ -9,7 +8,7 @@
               <v-spacer></v-spacer>
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
-                  <v-btn v-model="source" icon large target="_blank" v-on="on">
+                  <v-btn  icon large target="_blank" v-on="on">
                     <v-icon>arrow_back</v-icon>
                   </v-btn>
                 </template>
@@ -27,7 +26,6 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-main>
 </template>
 
 <script>
