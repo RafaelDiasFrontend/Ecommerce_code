@@ -32,16 +32,22 @@ class Cart
         ]); 
     }  
 
-    // Delete Method
+    // Delete item from cart
     public function delete($productId)
     {
         $this->user->cart()->detach($productId);
     }
-    // Delete Method
+    // Empty Cart
     public function empty()
     {
         $this->user->cart()->detach();
     }
+    // Is empty
+    public function isEmpty()
+    {
+       return $this->user->cart->sum('pivot.quantity') === 0;
+    }
+
     
     protected function getStorePayload($products)
     {
