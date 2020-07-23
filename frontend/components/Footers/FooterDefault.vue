@@ -3,7 +3,8 @@
     <v-container class='footer-default-grid mt-5 mb-custom'>
         <div class='col-footer mb-3'>
             <v-container>
-                <img src="~/assets/imagens/integrace_logo-grey.svg" alt="logo_default" class='logo-default'>
+                <!-- <img src="~/assets/imagens/integrace_logo-grey.svg" alt="logo_default" class='logo-default'> -->
+                <div class='h2'>Logo</div>
                 <!-- <img class='custom-size-logo' src="~/assets/imagens/logos/hospital_casa_De_saude_logo_dark_vazado.svg" alt='Loco Casa de Saúde Santos'> -->
             </v-container>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Cart;
 
+use App\Cart\Money;
 use App\Models\User;
 
 
@@ -53,9 +54,10 @@ class Cart
 
     protected function getCurrentQuantity($productId)
     {
-        if($product = $this->user->cart->where('id', $productId)->first()) {
+        if ($product = $this->user->cart->where('id', $productId)->first()) {
             return $product->pivot->quantity;
         }
+
         return 0;
     }
 }
