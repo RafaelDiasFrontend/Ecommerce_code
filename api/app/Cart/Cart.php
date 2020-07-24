@@ -47,6 +47,21 @@ class Cart
     {
        return $this->user->cart->sum('pivot.quantity') === 0;
     }
+       // Is empty
+       public function subtotal()
+       {
+          $subtotal = $this->user->cart->sum(function ($product) {
+            return $product->price->amount() * $product->pivot->quantity;
+          });
+
+          return new Money($subtotal);
+       }
+
+       public function total()
+       {
+           return $this->subtotal();
+       }
+   
 
     
     protected function getStorePayload($products)

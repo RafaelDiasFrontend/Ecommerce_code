@@ -28,6 +28,8 @@ class CartController extends Controller
     {
         return [
             'empty' => $cart->isEmpty(),
+            'subtotal' => $cart->subtotal()->formatted(),
+            'total' => $cart->total()->formatted()
         ];
     }
 
