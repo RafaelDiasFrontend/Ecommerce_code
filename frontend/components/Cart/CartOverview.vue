@@ -9,11 +9,11 @@
       <tr>
         <td></td>
         <td></td>
-        <td>
-          <p class="has-text-weight-bold">Subtotal</p>
+        <td class='pt-3'>
+          <p class="font-weight-bold">Subtotal</p>
         </td>
-        <td>
-          {{ subtotal }}
+        <td class='pt-3'>
+          <p>{{ subtotal }}</p>
         </td>
         <td></td>
       </tr>
