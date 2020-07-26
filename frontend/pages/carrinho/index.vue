@@ -1,6 +1,6 @@
 <template>
     <v-container class="fill-height" fluid>
-      <v-row align="center" justify="center">
+      <v-row align="center custom-mt" justify="center">      
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12" v-if="products.length">
             <v-toolbar color="primary" dark flat>
@@ -43,8 +43,18 @@ import CartOverview from '@/components/Cart/cartOverview'
       computed: {
         ...mapGetters({
           empty: 'cart/empty',
-          products: 'cart/products'
+          products: 'cart/products',
+          changed: 'cart/changed'
         })
       }
   }
 </script>
+
+<style scoped>
+
+.custom-mt {
+  margin-top: 11em;
+  margin-bottom: 12em;
+}
+
+</style>
