@@ -66,5 +66,11 @@ export const actions = {
             quantity
         })
         dispatch('getCart')     
+    },
+    async store ({ dispatch }, products) {
+        let response = await this.$axios.$post('cart', {
+            products
+        })
+        dispatch('getCart')     
     }
 }

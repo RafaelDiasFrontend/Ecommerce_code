@@ -16,7 +16,7 @@
             <v-chip v-if="!product.in_stock" class="h4 grey--text">Esgotado</v-chip>
             <span class="h4 grey--text">{{ product.price }}</span>
             <p v-if="product.description" class="p-small my-2">{{ product.description }}</p>
-            <form action>
+            <form action @submit.prevent="add">
               <ProductVariation
                 v-for="(variations, type) in product.variations"
                 :type="type"
@@ -24,7 +24,7 @@
                 :key="type"
                 v-model="form.variation"
               />
-              {{ form }}
+             
               <div class="v-field" v-if="form.variation">
                 <div class="v-control">
                   <div class="select my-2">
@@ -47,6 +47,7 @@
 
 
 <script>
+import { mapActions } from 'vuex' 
 import ProductVariation from "@/components/Products/ProductVariation";
 export default {
   components: {
@@ -57,7 +58,7 @@ export default {
       product: null,
       form: {
         variation: "",
-        quantity: 1
+        quantity: 1      
       }     
      }
     },
@@ -65,6 +66,21 @@ export default {
         'form.variation'() {
           this.form.quantity = 1
       }   
+  },
+  methods: {
+    ...mapActions({
+      store: 'cart/store'
+    }),
+    add () {
+      this.store([{
+        id: this.form.variation.id, quantity: this.form.quantity
+      }])
+      this.form = {
+        variation: '',
+        quantity: 1
+      }
+    }
+
   },
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products/${params.slug}`);
