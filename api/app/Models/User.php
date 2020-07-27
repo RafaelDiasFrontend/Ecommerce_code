@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Address;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,4 +65,12 @@ class User extends Authenticatable implements JWTSubject
         ->withPivot('quantity')
         ->withTimestamps();
     }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+
+
 }
