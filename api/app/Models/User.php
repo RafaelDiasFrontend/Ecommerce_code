@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Address;
+// use App\Models\ProductVariation;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
