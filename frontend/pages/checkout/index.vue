@@ -4,8 +4,10 @@
       <v-row>
         <v-col cols="12" md="8">
           <!-- Send To -->
-          <v-card class="mb-5">
-            <h2 class="h2-custom">Enviar para</h2>
+          <v-card class="mb-5">          
+            <ShippingAddress 
+            :addresses="addresses"
+            />
           </v-card>
           <!-- Payments -->
           <v-card class="mb-5">
@@ -72,9 +74,16 @@
 import { mapGetters } from "vuex";
 
 import CartOverview from "@/components/Cart/CartOverview";
+import ShippingAddress from "@/components/Checkout/Addresses/ShippingAddress";
 export default {
   components: {
     CartOverview,
+    ShippingAddress
+  },
+  data() {
+    return {
+      addresses: []
+    }
   },
   computed: {
     ...mapGetters({
@@ -83,6 +92,13 @@ export default {
       empty: "cart/empty",
     }),
   },
+  async asyncData({ app }) {
+   let addresses = await app.$axios.$get('addresses')
+
+    return {
+      addresses: addresses.data
+    }
+  }
 };
 </script>
 
