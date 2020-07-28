@@ -20,7 +20,13 @@
                 <CartOverview />
             </v-card-text>
             <v-card-actions>              
-              <v-btn :disabled="empty" color="primary" class='w-100 bg-primary-color white--text btn-register mt-1' large>Comprar</v-btn>
+              <v-btn 
+              :disabled="empty" 
+              color="primary" 
+              class='w-100 bg-primary-color white--text btn-register mt-1'
+              large
+              :to="{ name: 'checkout' }"
+               >Comprar</v-btn>
             </v-card-actions>
           </v-card>
           <!-- If cart is empty -->
