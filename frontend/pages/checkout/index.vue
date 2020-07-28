@@ -21,31 +21,24 @@
           <v-spacer></v-spacer>
 
           <!-- Cart Summary -->
-          <h2 class="h2-custom my-3">Resumo do carrinho</h2>
+
           <v-card class="pa-5" v-if="products.length">
+            <h2 class="h2-custom my-3">Resumo do carrinho</h2>
             <CartOverview>
               <template slot="rows">
                 <tr>
                   <td></td>
                   <td></td>
-                  <td class='font-weight-bold'>
-                      Envio
-                  </td>
-                  <td>
-                      R$0,00
-                  </td>
+                  <td class="font-weight-bold">Envio</td>
+                  <td>R$0,00</td>
                   <td></td>
                 </tr>
 
-                 <tr>
+                <tr>
                   <td></td>
                   <td></td>
-                  <td class='font-weight-bold'>
-                      Total
-                  </td>
-                  <td>
-                      {{ total }}
-                  </td>
+                  <td class="font-weight-bold">Total</td>
+                  <td>{{ total }}</td>
                   <td></td>
                 </tr>
               </template>
@@ -56,7 +49,6 @@
             class="bg-secondary-color btn-register mt-4"
             :disabled="empty"
             @click="validate"
-            
             required
           >Realizar pagamento</v-btn>
         </v-col>
@@ -66,7 +58,7 @@
           <v-btn
             :disabled="empty"
             type="submit"
-            class="bg-secondary-color btn-register mt-5"           
+            class="bg-secondary-color btn-register mt-5"
             @click="validate"
             required
           >Realizar pagamento</v-btn>
@@ -77,7 +69,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 import CartOverview from "@/components/Cart/CartOverview";
 export default {
@@ -85,14 +77,12 @@ export default {
     CartOverview,
   },
   computed: {
-  ...mapGetters({
-      total: 'cart/total',
-      products: 'cart/products',
-      empty: 'cart/empty'
-  })
-  
-  
-  }
+    ...mapGetters({
+      total: "cart/total",
+      products: "cart/products",
+      empty: "cart/empty",
+    }),
+  },
 };
 </script>
 
