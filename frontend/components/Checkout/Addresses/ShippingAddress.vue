@@ -10,6 +10,9 @@
             @click="addressSelected"
           />
         </template>
+        <template v-else-if="creating">
+         Criando
+        </template>
         <template v-else>
           <template v-if="selectedAddress">
             <ul class="grey--text pa-0">
@@ -20,7 +23,8 @@
               <li>{{ selectedAddress.country.name }}</li>
             </ul>
           </template>
-          <v-btn color="primary my-4" @click.prevent="selecting = true">Mudar o Endereço de Entrega</v-btn>
+          <v-btn color="primary"  @click.prevent="selecting = true">Mudar o Endereço de Entrega</v-btn>
+           <v-btn color="secondary" @click.prevent="creating = true">Criar Novo Endereço</v-btn>
         </template>
       </v-container>
     </template>
@@ -44,6 +48,7 @@ export default {
   data() {
     return {
       selecting: false,
+      creating: false,
       localAddresses: this.addresses,
       selectedAddress: null,
     };
