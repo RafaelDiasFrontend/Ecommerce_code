@@ -21,7 +21,7 @@
           <td>{{ address.postal_code }}</td>
           <td>{{ address.country_name }}</td>
           <td>
-            <v-switch v-model='address.default'>Enviar para esse End</v-switch>
+            <v-switch v-model='address.default' @click.prevent="$emit('click', address)">Enviar para esse End</v-switch>
           </td>
         </tr>
       </tbody>

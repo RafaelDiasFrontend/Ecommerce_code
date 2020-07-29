@@ -4,10 +4,11 @@
       <v-container class="box">
         <h2 class="h2-custom mb-2 primary-color">Enviar para</h2>
         <template v-if="selecting">
-          <ShippingAddressSelector 
-          :addresses="addresses"
-          :selectedAddress="selectedAddress"
-           />
+          <ShippingAddressSelector
+            :addresses="addresses"
+            :selectedAddress="selectedAddress"
+            @click="addressSelected"
+          />
         </template>
         <template v-else>
           <template v-if="selectedAddress">
@@ -39,6 +40,7 @@ export default {
   components: {
     ShippingAddressSelector,
   },
+
   data() {
     return {
       selecting: false,
@@ -52,6 +54,11 @@ export default {
     },
   },
   methods: {
+    addressSelected(address) {
+      this.switchAddress(address)
+      this.selecting = false
+    },
+
     switchAddress(address) {
       this.selectedAddress = address;
     },
