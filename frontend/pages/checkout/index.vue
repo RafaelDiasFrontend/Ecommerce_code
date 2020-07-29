@@ -49,8 +49,7 @@
           <v-btn
             type="submit"
             class="bg-secondary-color btn-register mt-4"
-            :disabled="empty"
-            @click="validate"
+            :disabled="empty"          
             required
           >Realizar pagamento</v-btn>
         </v-col>
