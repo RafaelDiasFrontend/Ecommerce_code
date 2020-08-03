@@ -11,7 +11,10 @@
           />
         </template>
         <template v-else-if="creating">
-         Criando
+         <ShippingAddressCreator 
+        @cancel="creating = false"
+        @created="created"
+         />
         </template>
         <template v-else>
           <template v-if="selectedAddress">
@@ -33,6 +36,7 @@
 
 
 <script>
+import ShippingAddressCreator from "@/components/Checkout/Addresses/ShippingAddressCreator";
 import ShippingAddressSelector from "@/components/Checkout/Addresses/ShippingAddressSelector";
 export default {
   props: {
@@ -43,6 +47,7 @@ export default {
   },
   components: {
     ShippingAddressSelector,
+    ShippingAddressCreator
   },
 
   data() {
@@ -67,6 +72,12 @@ export default {
     switchAddress(address) {
       this.selectedAddress = address;
     },
+    created (address) {
+      this.localAddresses.push(address)
+      this.creating = false
+
+      this.switchAddress(address)
+    }
   },
   created() {
     if (this.addresses.length) {
