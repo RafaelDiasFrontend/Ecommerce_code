@@ -36,23 +36,14 @@
             <v-col cols="12" sm="4">
               <v-text-field label="Cidade" v-model="form.city" outlined required></v-text-field>
             </v-col>
-            <v-col cols="12" sm="4">
-              <!-- <v-select
-                label="Pais"
-                max-height="auto"
-                v-model="form.country_id"                     
-                outlined
-                required
-              ></v-select> -->
-              <div class='v-field w-100'>
-                <select v-model="form.country_id">
-                  <option value="1">Afganistan</option>
-                </select>
-              </div>
+            <v-col cols="12" sm="4">  
+              <div>           
+                <CountryDropdown v-model="form.country_id" />     
+              </div>        
             </v-col>
 
             <v-col cols="12" sm="5">
-              <v-btn type='submit' color="primary">Adicionar Endereço</v-btn>
+              <v-btn type="submit" color="primary">Adicionar Endereço</v-btn>
               <v-btn color="secondary" @click.prevent="$emit('cancel')">Cancelar</v-btn>
             </v-col>
           </v-row>
@@ -63,7 +54,9 @@
 </template>
 
 <script>
+import CountryDropdown from "@/components/Checkout/Addresses/CountryDropdown";
 export default {
+  components: { CountryDropdown },
   data() {
     return {
       form: {
@@ -78,10 +71,8 @@ export default {
   },
   methods: {
     async store() {
-      let response = await this.$axios.$post('addresses', this.form )
-      this.$emit('created', response.data)
-
-
+      let response = await this.$axios.$post("addresses", this.form);
+      this.$emit("created", response.data);
     },
   },
 };
