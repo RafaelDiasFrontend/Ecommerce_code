@@ -3,10 +3,13 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="8">
+          {{ form }}
           <!-- Send To -->
           <v-card class="mb-5">          
             <ShippingAddress 
             :addresses="addresses"
+            v-model="form.address_id"
+
             />
           </v-card>
           <!-- Payments -->
@@ -81,9 +84,12 @@ export default {
   },
   data() {
     return {
-      addresses: []
+      addresses: [],
+      form: {
+        address_id: null
+      }
     }
-  },
+  }, 
   computed: {
     ...mapGetters({
       total: "cart/total",
