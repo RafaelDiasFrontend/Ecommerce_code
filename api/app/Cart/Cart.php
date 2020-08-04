@@ -4,6 +4,7 @@ namespace App\Cart;
 
 use App\Cart\Money;
 use App\Models\User;
+use App\Models\ShippingMethod;
 
 
 class Cart  
@@ -12,9 +13,17 @@ class Cart
 
     protected $changed = false;
 
+    protected $shipping;
+
     public function __construct(User $user)
     {
         $this->user = $user;
+    }
+
+    public function withShipping($shippingId)
+    {
+        $this->shipping = ShippingMethod::find($shippingId);
+        return $this;
     }
 
     public function add($products)
@@ -44,18 +53,15 @@ class Cart
 
     public function sync ()
     {
+    $this->user->cart->each(function ($product) {
+        $quantity = $product->minStock($product->pivot->quantity);
 
-       
+        $this->changed = $quantity != $product->pivot->quantity;
 
-        $this->user->cart->each(function ($product) {
-            $quantity = $product->minStock($product->pivot->quantity);
-
-            $this->changed = $quantity != $product->pivot->quantity;
-
-            $product->pivot->update([
-                'quantity' => $quantity
-            ]);
-        });
+        $product->pivot->update([
+            'quantity' => $quantity
+        ]);
+    });
     }
 
     public function hasChanged()
@@ -85,6 +91,11 @@ class Cart
 
        public function total()
        {
+            if ($this->shipping) {
+                dd($this->shipping);
+            }
+
+
            return $this->subtotal();
        }
    
