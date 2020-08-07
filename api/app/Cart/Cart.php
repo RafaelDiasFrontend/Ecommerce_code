@@ -92,7 +92,7 @@ class Cart
        public function total()
        {
             if ($this->shipping) {
-                dd($this->shipping);
+                return $this->subtotal()->add($this->shipping->price);
             }
 
 

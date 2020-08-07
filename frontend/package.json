@@ -22,6 +22,7 @@
     "imagemin-svgo": "^7.1.0",
     "jquery": "3.4.1",
     "nuxt": "^2.0.0",
+    "query-string": "^6.13.1",
     "vue-slick": "1.1.15",
     "vue-smooth-scroll": "^1.0.13",
     "vue-sweetalert2": "^3.0.3",
