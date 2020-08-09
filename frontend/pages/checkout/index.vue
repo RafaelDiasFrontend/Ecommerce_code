@@ -12,7 +12,8 @@
             <h2 class="h2-custom">Metodo De Pagamento</h2>
           </v-card>
           <!-- Shipping -->
-          <v-card class="mb-5">
+          <template v-if="shippingMethodId">
+                <v-card class="mb-5">
             <h2 class="h2-custom ml-4">Envio</h2>
             {{ shippingMethodId }}
             <form>
@@ -25,6 +26,7 @@
               </select>
             </form>
           </v-card>
+      
           <v-spacer></v-spacer>
 
           <!-- Cart Summary -->
@@ -32,7 +34,7 @@
           <v-card class="pa-5" v-if="products.length">
             <h2 class="h2-custom my-3">Resumo do carrinho</h2>
             <CartOverview>
-              <template slot="rows">
+              <template slot="rows" v-if="shippingMethodId">
                 <tr>
                   <td></td>
                   <td></td>
