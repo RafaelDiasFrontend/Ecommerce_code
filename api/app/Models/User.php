@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Order;
 use App\Models\Address;
-// use App\Models\ProductVariation;
+use App\Models\ProductVariation;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -72,6 +73,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Address::class);
     }
 
-
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
