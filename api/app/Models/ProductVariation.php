@@ -9,6 +9,7 @@ use App\Models\Traits\HasPrice;
 
 use App\Models\ProductVariationType;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Collections\ProductVariationCollection;
 
 class ProductVariation extends Model
 {
@@ -67,4 +68,8 @@ class ProductVariation extends Model
         ]);
     }
 
+    public function newCollection(array $models =[])
+    {
+        return new ProductVariationCollection($models);
+    } 
 }
