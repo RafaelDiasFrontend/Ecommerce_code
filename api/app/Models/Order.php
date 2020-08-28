@@ -33,19 +33,19 @@ class Order extends Model
 
     
 
-    public function user ()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function address ()
+    public function address()
     {
         return $this->belongsTo(Address::class);
     }
 
     public function shippingMethod()
     {
-        return $this->belognsTo(ShippingMethod::class);
+        return $this->belongsTo(ShippingMethod::class);
     }
 
     
