@@ -50,9 +50,11 @@
 import { mapActions } from 'vuex' 
 import ProductVariation from "@/components/Products/ProductVariation";
 export default {
+
   components: {
     ProductVariation
   },
+ 
   data() {
     return {
       product: null,
@@ -84,7 +86,6 @@ export default {
   },
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products/${params.slug}`);
-
     return {
       product: response.data
     };

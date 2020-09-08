@@ -104,13 +104,35 @@ export default {
     name: 'fade',
     mode: 'out-in'
   },  
-
+ 
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
+
+  target: 'static',
+
+ 
+  generate: {
+
+   routes: [
+    '/produtos/produto-01',
+    '/produtos/produto-02',
+    '/produtos/produto-03',
+    '/produtos/produto-04',
+    '/produtos/produto-05',
+    
+    '/categorias/um',
+    '/categorias/dois',
+    '/categorias/tres',
+    '/categorias/quatro',
+  ]
+},
+
+
   axios: {
     baseURL: 'http://localhost/Ecommerce_code/api/public/api'
+    // baseURL: 'http://api.agenciakpax.com.br/api'
   },
   auth: {    
     strategies: {

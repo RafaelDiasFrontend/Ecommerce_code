@@ -57,19 +57,17 @@
           <v-btn
             type="submit"
             class="bg-secondary-color btn-register mt-4"
-            :disabled="empty"
-            required
+           :disabled="empty || submitting"
+            @click.prevent="order"          
           >Realizar pagamento</v-btn>
         </v-col>
 
         <!-- Col 02 -->
         <v-col cols="12" md="4">
           <v-btn
-            :disabled="empty"
-            type="submit"
-            class="bg-secondary-color btn-register mt-5"
-            @click="validate"
-            required
+            :disabled="empty || submitting"
+            @click.prevent="order"           
+            class="bg-secondary-color btn-register mt-5"            
           >Realizar pagamento</v-btn>
         </v-col>
       </v-row>
@@ -87,15 +85,14 @@ export default {
     CartOverview,
     ShippingAddress,
   },
-  data() {
-    return {
+  data: () => ({
+      submitting: false,
       addresses: [],
       shippingMethods: [],
       form: {
         address_id: null,
       },
-    };
-  },
+    }),  
 
   watch: {
     "form.address_id"(addressId) {
@@ -106,7 +103,7 @@ export default {
 
     shippingMethodId() {
       this.getCart();
-    },
+    }, 
   },
   computed: {
     ...mapGetters({
@@ -133,6 +130,25 @@ export default {
       setShipping: "cart/setShipping",
       getCart: "cart/getCart",
     }),
+
+    async order () {
+      this.submitting = true
+
+      try {
+        await this.$axios.$post('orders', {
+          ...this.form,
+          shipping_method_id: this.shippingMethodId
+        })      
+
+        await this.getCart()
+        this.$router.replace({
+          name: 'pedidos'
+        })
+      } catch (e) {
+        //
+      }
+    },
+
     async getShippingMethodsForAddress(addressId) {
       let response = await this.$axios.$get(`addresses/${addressId}/shipping`);
 

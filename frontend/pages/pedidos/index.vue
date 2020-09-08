@@ -1,15 +1,15 @@
 <template>
-  <div class="products">
-      Produtos
- </div>
+    <div class="orders">
+        Pedidos
+    </div>
 </template>
 
 <script>
 export default {
-  
+    
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
