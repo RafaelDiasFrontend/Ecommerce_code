@@ -50,8 +50,7 @@
           this.update({ productId: this.product.id, quantity })
         }
       }
-    },
-
+    },    
     props: {
       product: {
         required: true,

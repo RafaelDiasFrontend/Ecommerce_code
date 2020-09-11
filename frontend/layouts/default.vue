@@ -1,10 +1,11 @@
 <template>
   <v-app light>
+     <TheAlert />
     <TheHeader @sidenavToggle="displaySidenav =!displaySidenav" />
     <TheSidenav
       :show="displaySidenav"
       @close="displaySidenav = false" />
- 
+   
     <nuxt />
   
   <FooterDefault />
@@ -16,12 +17,15 @@ import Button02 from '@/components/Buttons/Button02'
 import TheHeader from '~/components/Navigation/TheHeader'
 import TheSidenav from '~/components/Navigation/TheSidenav'
 import FooterDefault from '@/components/Footers/FooterDefault'
+import TheAlert from '@/components/Globals/TheAlert'
+
 export default {
   components: {
     TheHeader,
     TheSidenav,
     FooterDefault,
-    Button02
+    Button02,
+    TheAlert
   },
    data() {
     return {

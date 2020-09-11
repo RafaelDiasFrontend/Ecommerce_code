@@ -129,9 +129,11 @@ export default {
     ...mapActions({
       setShipping: "cart/setShipping",
       getCart: "cart/getCart",
+      flash: 'alert/flash'
     }),
 
     async order () {
+     
       this.submitting = true
 
       try {
@@ -141,12 +143,16 @@ export default {
         })      
 
         await this.getCart()
+
         this.$router.replace({
           name: 'pedidos'
         })
       } catch (e) {
-        //
+        this.flash(e.response.data.message)
+
+        this.getCart()      
       }
+      this.submitting = false
     },
 
     async getShippingMethodsForAddress(addressId) {
