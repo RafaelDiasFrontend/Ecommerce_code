@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cart\Money;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\ShippingMethod;
@@ -31,6 +32,16 @@ class Order extends Model
         });
     }
 
+    public function getSubtotalAttribute($subtotal)
+    {
+        return new Money($subtotal);
+    }
+
+    
+    public function total()
+    {
+        return $this->subtotal->add($this->shippingMethod->price);
+    }
     
 
     public function user()

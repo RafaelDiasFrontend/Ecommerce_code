@@ -49,7 +49,7 @@
           <template v-else>
             <!--Orders -->
             <li>
-              <a to="/login" class="font-weight-bold">Pedidos</a>
+              <nuxt-link :to="{ name: 'pedidos' }" class="font-weight-bold">Pedidos</nuxt-link>
             </li>
             <li>
               <a to="/login" class="font-weight-bold">{{ $auth.user.name }}</a>
