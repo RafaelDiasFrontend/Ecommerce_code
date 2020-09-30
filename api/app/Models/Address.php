@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Country;
+use App\Models\Traits\CanBeDefault;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    use CanBeDefault;
     protected $fillable = [
         'name',
         'address_1',
@@ -16,27 +19,11 @@ class Address extends Model
         'default'
     ];
 
-    public static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($address) {
-          if ($address->default) {
-              $address->user->addresses()->update([
-                  'default' => false
-              ]);
-          }
-        });
-    }
-
-    public function setDefaultAttribute($value)
-     {
-        $this->attributes['default'] = ($value === 'true' || $value ? true: false);
-     }
 
     public function user ()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function country ()

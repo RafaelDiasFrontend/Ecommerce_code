@@ -9,7 +9,7 @@
           </v-card>
           <!-- Payments -->
           <v-card class="mb-5">
-            <h2 class="h2-custom">Metodo De Pagamento</h2>
+            <PaymentMethods :payment-methods="paymentMethods" v-model="form.method_id" />
           </v-card>
           <!-- Shipping -->
           <template v-if="shippingMethodId">
@@ -80,15 +80,18 @@ import { mapGetters, mapActions } from "vuex";
 
 import CartOverview from "@/components/Cart/CartOverview";
 import ShippingAddress from "@/components/Checkout/Addresses/ShippingAddress";
+import PaymentMethods from "@/components/Checkout/paymentMethods/PaymentMethods";
 export default {
   components: {
     CartOverview,
     ShippingAddress,
+    PaymentMethods
   },
   data: () => ({
       submitting: false,
       addresses: [],
       shippingMethods: [],
+      paymentMethods: [],
       form: {
         address_id: null,
       },
@@ -166,9 +169,11 @@ export default {
 
   async asyncData({ app }) {
     let addresses = await app.$axios.$get("addresses");
+    let paymentMethods = await app.$axios.$get("payment-methods");
 
     return {
       addresses: addresses.data,
+      paymentMethods: paymentMethods.data,
     };
   },
 };
