@@ -11,17 +11,15 @@
       </thead>
       <tbody>
         <tr
-          v-for="address in addresses"
-          :key="address.id"
-          :class="{ 'font-weight-bold': address.id === selectedAddress.id }"
+          v-for="paymentMethod in paymentMethods"
+          :key="paymentMethod.id"
+          :class="{ 'font-weight-bold': paymentMethod.id === selectedPaymentMethod.id }"
         >
-          <td>{{ address.name }}</td>
-          <td>{{ address.address_1 }}</td>
-          <td>{{ address.city }}</td>
-          <td>{{ address.postal_code }}</td>
-          <td>{{ address.country_name }}</td>
+          <td>{{ paymentMethod.card_type }} terminado em {{ paymentMethod.last_four }} </td>         
           <td>
-            <v-switch v-model='address.default' @click.prevent="$emit('click', address)">Enviar para esse End</v-switch>
+            <v-switch v-model='paymentMethods.default' @click.prevent="$emit('click', paymentMethod)">
+                Pagar com este
+            </v-switch>
           </td>
         </tr>
       </tbody>
@@ -32,11 +30,11 @@
 <script>
 export default {
   props: {
-    addresses: {
+    paymentMethods: {
       required: true,
       type: Array,
     },
-    selectedAddress: {
+    selectedPaymentMethod: {
       required: true,
       type: Object,
     },

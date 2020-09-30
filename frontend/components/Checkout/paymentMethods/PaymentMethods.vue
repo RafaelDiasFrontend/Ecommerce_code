@@ -4,7 +4,11 @@
       <v-container class="box">
         <h2 class="h2-custom mb-2 primary-color">Metodo de Pagamento</h2>
         <template v-if="selecting">
-         Selecione o Método de Pagamento
+           <PaymentMethodsSelector
+            :payment-methods="paymentMethods"
+            :selected-payment-method="selectedPaymentMethod"
+            @click="paymentMethodSelected"
+          />
         </template>
         <template v-else-if="creating">
          Criar o Método de Pagamento
@@ -27,6 +31,7 @@
 
 
 <script>
+import PaymentMethodsSelector from './paymentMethodsSelector'
 export default {
   props: {
     paymentMethods: {
@@ -34,6 +39,9 @@ export default {
       type: Array,
     },
   }, 
+  components: {
+    PaymentMethodsSelector
+  },
 
   data() {
     return {
